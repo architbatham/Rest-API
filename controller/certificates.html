@@ -37,17 +37,53 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       max-width: 300px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+      overflow: hidden;
     }
 
     .certificate img {
       max-width: 100%;
       border-radius: 8px;
+      cursor: pointer;
     }
 
     .certificate:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 350px; /* Expand the container */
+      max-height: 350px; /* Optional: expand in height as well */
+    }
+
+    .certificate:hover img {
+      transform: scale(1.1); /* Slightly expand the image */
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
     }
 
     footer {
@@ -68,29 +104,47 @@
   <main>
     <section id="certificates">
       <div class="certificate">
-        <img src="https://github.com/architbatham/Certificates/blob/main/Capture.PNG?raw=true" alt="Responsive Web Designing">
+        <img src="https://github.com/architbatham/Certificates/blob/main/Capture.PNG?raw=true" alt="Responsive Web Designing" onclick="openLightbox(this)">
         <p>Responsive Web Designing</p>
       </div>
       <div class="certificate">
-        <img src="https://github.com/architbatham/Certificates/blob/main/Udemy%20Prompt%20Engineering.png?raw=true" alt="Industrial Training">
+        <img src="https://github.com/architbatham/Certificates/blob/main/Udemy%20Prompt%20Engineering.png?raw=true" alt="Industrial Training" onclick="openLightbox(this)">
         <p>Industrial Training</p>
       </div>
       <div class="certificate">
-        <img src="https://github.com/architbatham/Certificates/blob/main/Screenshot%202023-08-28%20071917.png?raw=true" alt="Udemy Prompt Engineering">
+        <img src="https://github.com/architbatham/Certificates/blob/main/Screenshot%202023-08-28%20071917.png?raw=true" alt="Udemy Prompt Engineering" onclick="openLightbox(this)">
         <p>Udemy Prompt Engineering</p>
       </div>
       <div class="certificate">
-        <img src="https://github.com/architbatham/Certificates/blob/main/txon_cer.png?raw=true" alt="Internship TXON">
+        <img src="https://github.com/architbatham/Certificates/blob/main/txon_cer.png?raw=true" alt="Internship TXON" onclick="openLightbox(this)">
         <p>Internship TXON</p>
       </div>
       <div class="certificate">
-        <img src="https://github.com/architbatham/Certificates/blob/main/complition.jpg?raw=true" alt="Internship Xenon Nation">
+        <img src="https://github.com/architbatham/Certificates/blob/main/complition.jpg?raw=true" alt="Internship Xenon Nation" onclick="openLightbox(this)">
         <p>Internship Xenon Nation</p>
       </div>
     </section>
   </main>
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="">
+  </div>
   <footer>
     <p>&copy; 2024 Archit Batham</p>
   </footer>
+
+  <script>
+    function openLightbox(imgElement) {
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgElement.src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      var lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
